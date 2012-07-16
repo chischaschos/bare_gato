@@ -8,6 +8,28 @@ class Game
     ]
   end
 
+  def got_a_winner?
+    3.times do |y|
+      # determine winner by row
+      is_winner = @grid[y].uniq.size == 1 &&
+        (@grid[y].uniq.first == 'o' ||
+         @grid[y].uniq.first == 'x')
+      return true if is_winner
+
+      # determine winner by column
+      column = []
+      3.times do |x|
+        column << @grid[y][x]
+      end
+      is_winner = column.uniq.size == 1 &&
+        (column.uniq.first == 'o' ||
+         column.uniq.first == 'x')
+      return true if is_winner
+    end
+
+    return false
+  end
+
   def next
     @last_move_type == 'o' ? 'x' : 'o'
   end
@@ -18,7 +40,7 @@ class Game
 
   def play move
     raise "Unexpected movement type" unless next? move.type
-    @grid[move.x][move.y] = move.type
+    @grid[move.y][move.x] = move.type
     @last_move_type = move.type
   end
 
@@ -115,9 +137,9 @@ describe Game do
 
         it "should return the current game status" do
           subject.status.should eq({
-            game: [['x', '', 'x'],
-                   ['o', '', ''],
-                   ['',  '', '']],
+            game: [['x', 'o', ''],
+                   ['', '', ''],
+                   ['x',  '', '']],
             next: 'o'
           })
         end
@@ -137,6 +159,34 @@ describe Game do
             next: 'o'
           })
         end
+      end
+    end
+
+    context "a full game" do
+      it "should determine a winner" do
+        subject.play Move.new('x', x: 0, y: 0)
+        subject.got_a_winner?.should be_false
+
+        subject.play Move.new('o', x: 1, y: 0)
+        subject.got_a_winner?.should be_false
+
+        subject.play Move.new('x', x: 2, y: 0)
+        subject.got_a_winner?.should be_false
+
+        subject.play Move.new('o', x: 1, y: 1)
+        subject.got_a_winner?.should be_false
+
+        subject.play Move.new('x', x: 2, y: 1)
+        subject.got_a_winner?.should be_false
+
+        subject.play Move.new('o', x: 1, y: 2)
+        subject.status.should eq({
+            game: [['x', 'o', 'x'],
+                   ['',  'o', 'x'],
+                   ['',  'o', '']],
+            next: 'x'
+        })
+        subject.got_a_winner?.should be_true
       end
     end
 
