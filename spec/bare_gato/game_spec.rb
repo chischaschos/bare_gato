@@ -12,7 +12,6 @@ describe BareGato::Game do
 
     it "should return the next move type" do
       subject.next.should eq('o')
-
     end
 
     it "should keep movements sequence" do
@@ -70,31 +69,109 @@ describe BareGato::Game do
     end
 
     context "a full game" do
-      it "should determine a winner" do
-        subject.play Move.new('x', x: 0, y: 0)
-        subject.got_a_winner?.should be_false
+      context "when winning by column" do
+        it "should determine a winner" do
+          subject.play Move.new('x', x: 0, y: 0)
+          subject.got_a_winner?.should be_false
 
-        subject.play Move.new('o', x: 1, y: 0)
-        subject.got_a_winner?.should be_false
+          subject.play Move.new('o', x: 1, y: 0)
+          subject.got_a_winner?.should be_false
 
-        subject.play Move.new('x', x: 2, y: 0)
-        subject.got_a_winner?.should be_false
+          subject.play Move.new('x', x: 2, y: 0)
+          subject.got_a_winner?.should be_false
 
-        subject.play Move.new('o', x: 1, y: 1)
-        subject.got_a_winner?.should be_false
+          subject.play Move.new('o', x: 1, y: 1)
+          subject.got_a_winner?.should be_false
 
-        subject.play Move.new('x', x: 2, y: 1)
-        subject.got_a_winner?.should be_false
+          subject.play Move.new('x', x: 2, y: 1)
+          subject.got_a_winner?.should be_false
 
-        subject.play Move.new('o', x: 1, y: 2)
-        subject.status.should eq({
-            game: [['x', 'o', 'x'],
-                   ['',  'o', 'x'],
-                   ['',  'o', '']],
-            next: 'x'
-        })
-        subject.got_a_winner?.should be_true
+          subject.play Move.new('o', x: 1, y: 2)
+          subject.status.should eq({
+              game: [['x', 'o', 'x'],
+                     ['',  'o', 'x'],
+                     ['',  'o', '']],
+              next: 'x'
+          })
+          subject.got_a_winner?.should be_true
+        end
       end
+
+      context "when winning by row" do
+        it "should determine a winner" do
+          subject.play Move.new('x', x: 0, y: 0)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('o', x: 0, y: 1)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('x', x: 1, y: 0)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('o', x: 1, y: 1)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('x', x: 2, y: 0)
+          subject.status.should eq({
+              game: [['x', 'x', 'x'],
+                     ['o', 'o', ''],
+                     ['',  '', '']],
+              next: 'o'
+          })
+          subject.got_a_winner?.should be_true
+        end
+      end
+
+      context "when winning by diagonal" do
+        it "should determine a winner" do
+          subject.play Move.new('x', x: 0, y: 0)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('o', x: 0, y: 1)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('x', x: 1, y: 1)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('o', x: 1, y: 0)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('x', x: 2, y: 2)
+          subject.status.should eq({
+              game: [['x', 'o', ''],
+                     ['o', 'x', ''],
+                     ['',  '', 'x']],
+              next: 'o'
+          })
+          subject.got_a_winner?.should be_true
+        end
+      end
+
+      context "when winning by inverse diagonal" do
+        it "should determine a winner" do
+          subject.play Move.new('x', x: 2, y: 0)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('o', x: 0, y: 1)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('x', x: 1, y: 1)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('o', x: 1, y: 0)
+          subject.got_a_winner?.should be_false
+
+          subject.play Move.new('x', x: 0, y: 2)
+          subject.status.should eq({
+              game: [['', 'o', 'x'],
+                     ['o', 'x', ''],
+                     ['x',  '', '']],
+              next: 'o'
+          })
+          subject.got_a_winner?.should be_true
+        end
+      end
+
     end
 
   end

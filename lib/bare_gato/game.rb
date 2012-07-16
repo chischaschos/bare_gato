@@ -9,23 +9,45 @@ module BareGato
     end
 
     def got_a_winner?
+      # determine winner by row
       3.times do |y|
-        # determine winner by row
         is_winner = @grid[y].uniq.size == 1 &&
           (@grid[y].uniq.first == 'o' ||
            @grid[y].uniq.first == 'x')
         return true if is_winner
 
-        # determine winner by column
+      end
+
+      # determine winner by column
+      3.times do |x|
         column = []
-        3.times do |x|
-          column << @grid[y][x]
-        end
+        column << @grid[0][x]
+        column << @grid[1][x]
+        column << @grid[2][x]
+
         is_winner = column.uniq.size == 1 &&
           (column.uniq.first == 'o' ||
            column.uniq.first == 'x')
         return true if is_winner
       end
+
+      diagonal = []
+      3.times do |index|
+        diagonal << @grid[index][index]
+      end
+      is_winner = diagonal.uniq.size == 1 &&
+        (diagonal.uniq.first == 'o' ||
+         diagonal.uniq.first == 'x')
+      return true if is_winner
+
+      diagonal = []
+      3.times do |index|
+        diagonal << @grid[index][2 - index]
+      end
+      is_winner = diagonal.uniq.size == 1 &&
+        (diagonal.uniq.first == 'o' ||
+         diagonal.uniq.first == 'x')
+      return true if is_winner
 
       return false
     end
