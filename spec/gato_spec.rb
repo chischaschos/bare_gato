@@ -8,6 +8,10 @@ class Game
     ]
   end
 
+  def next
+    @last_move_type == 'o' ? 'x' : 'o'
+  end
+
   def next? move_type
     !(@last_move_type == move_type.to_s)
   end
@@ -20,7 +24,8 @@ class Game
 
   def status
     {
-      game: @grid
+      game: @grid,
+      next: self.next
     }
   end
 end
@@ -76,6 +81,11 @@ describe Game do
       subject.play move
     end
 
+    it "should return the next move type" do
+      subject.next.should eq('o')
+
+    end
+
     it "should keep movements sequence" do
       subject.play Move.new('x', x: 0, y: 0)
       subject.next?(:x).should be_false
@@ -89,7 +99,8 @@ describe Game do
       subject.status.should eq({
         game: [['', '', ''],
                ['', '', ''],
-               ['', '', '']]
+               ['', '', '']],
+        next: 'o'
       })
     end
 
@@ -106,7 +117,8 @@ describe Game do
           subject.status.should eq({
             game: [['x', '', 'x'],
                    ['o', '', ''],
-                   ['',  '', '']]
+                   ['',  '', '']],
+            next: 'o'
           })
         end
       end
@@ -121,7 +133,8 @@ describe Game do
           subject.status.should eq({
             game: [['x', '', ''],
                    ['',  '', ''],
-                   ['',  '', '']]
+                   ['',  '', '']],
+            next: 'o'
           })
         end
       end
