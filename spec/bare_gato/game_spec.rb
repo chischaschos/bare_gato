@@ -3,7 +3,16 @@ require 'spec_helper'
 describe BareGato::Game do
 
   describe "a 3x3 game" do
-    subject { BareGato::Game.new }
+    subject do
+      bare_gato_game = BareGato::Game.new
+      bare_gato_game.strategies = [
+        BareGato::WinningStrategies::Row,
+        BareGato::WinningStrategies::Column,
+        BareGato::WinningStrategies::Diagonal,
+        BareGato::WinningStrategies::InverseDiagonal
+      ]
+      bare_gato_game
+    end
 
     it "should be playable" do
       move = Move.new 'x', x: 0, y: 0

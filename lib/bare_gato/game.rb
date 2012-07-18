@@ -1,5 +1,7 @@
 module BareGato
   class Game
+    attr_accessor :strategies
+
     def initialize
       @grid = [
         ['', '', ''],
@@ -9,17 +11,10 @@ module BareGato
     end
 
     def got_a_winner?
-      row = BareGato::WinningStrategies::Row.new @grid
-      return true if row.winner?
-
-      row = BareGato::WinningStrategies::Column.new @grid
-      return true if row.winner?
-
-      row = BareGato::WinningStrategies::Diagonal.new @grid
-      return true if row.winner?
-
-      row = BareGato::WinningStrategies::InverseDiagonal.new @grid
-      return true if row.winner?
+      strategies.each do |strategy_class|
+        strategy = strategy_class.new @grid
+        return true if strategy.winner?
+      end
 
       return false
     end
