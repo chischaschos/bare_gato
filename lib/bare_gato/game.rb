@@ -9,40 +9,17 @@ module BareGato
     end
 
     def got_a_winner?
-      # determine winner by row
       row = BareGato::WinningStrategies::Row.new @grid
       return true if row.winner?
 
-      # determine winner by column
-      3.times do |x|
-        column = []
-        column << @grid[0][x]
-        column << @grid[1][x]
-        column << @grid[2][x]
+      row = BareGato::WinningStrategies::Column.new @grid
+      return true if row.winner?
 
-        is_winner = column.uniq.size == 1 &&
-          (column.uniq.first == 'o' ||
-           column.uniq.first == 'x')
-        return true if is_winner
-      end
+      row = BareGato::WinningStrategies::Diagonal.new @grid
+      return true if row.winner?
 
-      diagonal = []
-      3.times do |index|
-        diagonal << @grid[index][index]
-      end
-      is_winner = diagonal.uniq.size == 1 &&
-        (diagonal.uniq.first == 'o' ||
-         diagonal.uniq.first == 'x')
-      return true if is_winner
-
-      diagonal = []
-      3.times do |index|
-        diagonal << @grid[index][2 - index]
-      end
-      is_winner = diagonal.uniq.size == 1 &&
-        (diagonal.uniq.first == 'o' ||
-         diagonal.uniq.first == 'x')
-      return true if is_winner
+      row = BareGato::WinningStrategies::InverseDiagonal.new @grid
+      return true if row.winner?
 
       return false
     end

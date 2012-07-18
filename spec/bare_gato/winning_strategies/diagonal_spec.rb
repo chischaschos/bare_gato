@@ -1,18 +1,18 @@
 require 'spec_helper'
 
-describe BareGato::WinningStrategies::Row do
+describe BareGato::WinningStrategies::Diagonal do
 
   context "within a winner grid" do
     let(:grid) do
       [
-        ['',  'x', 'x'],
-        ['o', 'o', 'o'],
-        ['',  '',  '']
+        ['x', '', 'o'],
+        ['', 'x', ''],
+        ['', 'o', 'x']
       ]
     end
 
     subject do
-      BareGato::WinningStrategies::Row.new grid
+      BareGato::WinningStrategies::Diagonal.new grid
     end
 
     it "returns a winner" do
@@ -30,7 +30,7 @@ describe BareGato::WinningStrategies::Row do
     end
 
     subject do
-      BareGato::WinningStrategies::Row.new grid
+      BareGato::WinningStrategies::Diagonal.new grid
     end
 
     it "returns a winner" do
