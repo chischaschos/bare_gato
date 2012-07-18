@@ -10,13 +10,8 @@ module BareGato
 
     def got_a_winner?
       # determine winner by row
-      3.times do |y|
-        is_winner = @grid[y].uniq.size == 1 &&
-          (@grid[y].uniq.first == 'o' ||
-           @grid[y].uniq.first == 'x')
-        return true if is_winner
-
-      end
+      row = BareGato::WinningStrategies::Row.new @grid
+      return true if row.winner?
 
       # determine winner by column
       3.times do |x|
