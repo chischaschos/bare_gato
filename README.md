@@ -2,6 +2,9 @@
 
 This is an engine to play the [**El Gato**](http://en.wikipedia.org/wiki/Tic-tac-toe) game
 
+[![Code
+Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/chischaschos/bare_gato)
+
 ## Installation
 
 Add this line to your application's Gemfile:
