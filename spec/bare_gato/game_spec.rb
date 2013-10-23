@@ -7,6 +7,17 @@ module BareGato
 
     let(:o_player) { Player.new 'o' }
 
+    it 'should compare multiple games' do
+      game1 = described_class.new players: [Player.new('a'), Player.new('b')]
+      game2 = described_class.new players: [Player.new('a'), Player.new('b')]
+      expect(game1).to_not eq game2
+
+      game2 = described_class.new players: [Player.new('a'), Player.new('b')], id: '123'
+      game3 = described_class.new players: [Player.new('a'), Player.new('b')], id: '123'
+      expect(game2).to eq game3
+
+    end
+
     describe 'a 3x3 game' do
       subject do
         bare_gato_game = BareGato::Game.new players: [

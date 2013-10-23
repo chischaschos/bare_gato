@@ -1,5 +1,8 @@
+require 'securerandom'
+
 module BareGato
   class Game
+    attr_reader :id
     attr_accessor :strategies
 
     def initialize args
@@ -9,6 +12,7 @@ module BareGato
         [nil, nil, nil],
       ]
       @players = args[:players]
+      @id = args[:id] || SecureRandom.uuid
     end
 
     def includes_player? player
@@ -41,6 +45,10 @@ module BareGato
         game: @grid,
         next: self.next
       }
+    end
+
+    def == other
+      id == other.id
     end
 
   end
