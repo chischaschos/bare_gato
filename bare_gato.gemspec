@@ -2,19 +2,20 @@
 require File.expand_path('../lib/bare_gato/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["emmanuel delgado"]
-  gem.email         = ["emmanuel.delgado@crowdint.com"]
+  gem.authors       = ['emmanuel delgado']
+  gem.email         = ['emmanuel.delgado@crowdint.com']
   gem.description   = %q{A tic tac toe game engine}
   gem.summary       = %q{A tic tac toe game engine}
-  gem.homepage      = "http://emmanueldelgado.me"
+  gem.homepage      = 'http://blog.crowdint.com/'
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "bare_gato"
-  gem.require_paths = ["lib"]
+  gem.name          = 'bare_gato'
+  gem.require_paths = ['lib']
   gem.version       = BareGato::VERSION
 
+  gem.add_development_dependency 'rake'
   gem.add_development_dependency 'debugger'
   gem.add_development_dependency 'rspec'
 end
