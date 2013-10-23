@@ -6,14 +6,9 @@ module BareGato
       end
 
       def winner?
-        3.times do |y|
-          is_winner = @grid[y].uniq.size == 1 &&
-            (@grid[y].uniq.first == 'o' ||
-             @grid[y].uniq.first == 'x')
-          return true if is_winner
+        !!@grid.find do |row|
+          row.compact.size == row.size && row.uniq.compact.size == 1
         end
-
-        return false
       end
 
     end

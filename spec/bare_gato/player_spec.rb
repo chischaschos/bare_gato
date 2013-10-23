@@ -6,7 +6,12 @@ describe Player do
   end
 
   it "should be string friendly" do
-    subject.dsplay.should == "X"
-    subject.should == "X"
+    subject.display.should == "X"
   end
+
+  it 'should identify players' do
+    expect(Player.new 'X' ).to eq Player.new('X')
+    expect(Player.new 'X' ).to_not eq Player.new('R')
+  end
+
 end

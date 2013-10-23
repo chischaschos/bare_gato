@@ -7,13 +7,11 @@ module BareGato
 
       def winner?
         diagonal = []
-        3.times do |index|
-          diagonal << @grid[index][2 - index]
+        @grid.size.times do |index|
+          diagonal << @grid[index][@grid.size - 1 - index]
         end
 
-        diagonal.uniq.size == 1 &&
-          (diagonal.uniq.first == 'o' ||
-           diagonal.uniq.first == 'x')
+        diagonal.compact.size == @grid.size && diagonal.compact.uniq.size == 1
       end
 
     end

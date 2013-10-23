@@ -2,35 +2,38 @@ module BareGato
   class Game
     attr_accessor :strategies
 
-    def initialize
+    def initialize args
       @grid = [
-        ['', '', ''],
-        ['', '', ''],
-        ['', '', ''],
+        [nil, nil, nil],
+        [nil, nil, nil],
+        [nil, nil, nil],
       ]
+      @players = args[:players]
+    end
+
+    def add_player player
+      @players << player
     end
 
     def got_a_winner?
-      strategies.each do |strategy_class|
+      !!strategies.find do |strategy_class|
         strategy = strategy_class.new @grid
-        return true if strategy.winner?
+        strategy.winner?
       end
-
-      return false
     end
 
     def next
-      @last_move_type == 'o' ? 'x' : 'o'
+      @players.last
     end
 
-    def next? move_type
-      !(@last_move_type == move_type.to_s)
+    def next? player
+      @players.last == player
     end
 
     def play move
-      raise "Unexpected movement type" unless next? move.type
-      @grid[move.y][move.x] = move.type
-      @last_move_type = move.type
+      raise "Unexpected player moving" unless next? move.player
+      @grid[move.y][move.x] = move.player
+      @players.reverse!
     end
 
     def status

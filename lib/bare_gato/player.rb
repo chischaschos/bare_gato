@@ -1,12 +1,12 @@
 class Player
 
-  attr_accessor :display
+  attr_reader :display
 
   def initialize display
-    @display
+    @display = display
   end
 
-  def to_s
-    @display.to_s
+  def == other
+    other.display == display
   end
 end

@@ -15,5 +15,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = BareGato::VERSION
 
+  gem.add_development_dependency 'debugger'
   gem.add_development_dependency 'rspec'
 end

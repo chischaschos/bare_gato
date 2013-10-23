@@ -1,0 +1,41 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BareGato	lib/bare_gato.rb	/^module BareGato$/;"	m
+BareGato	lib/bare_gato/game.rb	/^module BareGato$/;"	m
+BareGato	lib/bare_gato/version.rb	/^module BareGato$/;"	m
+BareGato	lib/bare_gato/winning_strategies/column.rb	/^module BareGato$/;"	m
+BareGato	lib/bare_gato/winning_strategies/diagonal.rb	/^module BareGato$/;"	m
+BareGato	lib/bare_gato/winning_strategies/inverse_diagonal.rb	/^module BareGato$/;"	m
+BareGato	lib/bare_gato/winning_strategies/row.rb	/^module BareGato$/;"	m
+Column	lib/bare_gato/winning_strategies/column.rb	/^    class Column$/;"	c	class:BareGato.WinningStrategies
+Diagonal	lib/bare_gato/winning_strategies/diagonal.rb	/^    class Diagonal$/;"	c	class:BareGato.WinningStrategies
+Game	lib/bare_gato/game.rb	/^  class Game$/;"	c	class:BareGato
+InverseDiagonal	lib/bare_gato/winning_strategies/inverse_diagonal.rb	/^    class InverseDiagonal$/;"	c	class:BareGato.WinningStrategies
+Move	lib/bare_gato/move.rb	/^class Move$/;"	c
+Player	lib/bare_gato/player.rb	/^class Player$/;"	c
+Row	lib/bare_gato/winning_strategies/row.rb	/^    class Row$/;"	c	class:BareGato.WinningStrategies
+WinningStrategies	lib/bare_gato/winning_strategies/column.rb	/^  module WinningStrategies$/;"	m	class:BareGato
+WinningStrategies	lib/bare_gato/winning_strategies/diagonal.rb	/^  module WinningStrategies$/;"	m	class:BareGato
+WinningStrategies	lib/bare_gato/winning_strategies/inverse_diagonal.rb	/^  module WinningStrategies$/;"	m	class:BareGato
+WinningStrategies	lib/bare_gato/winning_strategies/row.rb	/^  module WinningStrategies$/;"	m	class:BareGato
+got_a_winner?	lib/bare_gato/game.rb	/^    def got_a_winner?$/;"	f	class:BareGato.Game
+initialize	lib/bare_gato/game.rb	/^    def initialize$/;"	f	class:BareGato.Game
+initialize	lib/bare_gato/move.rb	/^  def initialize player, space$/;"	f	class:Move
+initialize	lib/bare_gato/player.rb	/^  def initialize display$/;"	f	class:Player
+initialize	lib/bare_gato/winning_strategies/column.rb	/^      def initialize grid$/;"	f	class:BareGato.WinningStrategies.Column
+initialize	lib/bare_gato/winning_strategies/diagonal.rb	/^      def initialize grid$/;"	f	class:BareGato.WinningStrategies.Diagonal
+initialize	lib/bare_gato/winning_strategies/inverse_diagonal.rb	/^      def initialize grid$/;"	f	class:BareGato.WinningStrategies.InverseDiagonal
+initialize	lib/bare_gato/winning_strategies/row.rb	/^      def initialize grid$/;"	f	class:BareGato.WinningStrategies.Row
+next	lib/bare_gato/game.rb	/^    def next$/;"	f	class:BareGato.Game
+next?	lib/bare_gato/game.rb	/^    def next? move_type$/;"	f	class:BareGato.Game
+play	lib/bare_gato/game.rb	/^    def play move$/;"	f	class:BareGato.Game
+status	lib/bare_gato/game.rb	/^    def status$/;"	f	class:BareGato.Game
+valid?	lib/bare_gato/move.rb	/^  def valid?$/;"	f	class:Move
+winner?	lib/bare_gato/winning_strategies/column.rb	/^      def winner?$/;"	f	class:BareGato.WinningStrategies.Column
+winner?	lib/bare_gato/winning_strategies/diagonal.rb	/^      def winner?$/;"	f	class:BareGato.WinningStrategies.Diagonal
+winner?	lib/bare_gato/winning_strategies/inverse_diagonal.rb	/^      def winner?$/;"	f	class:BareGato.WinningStrategies.InverseDiagonal
+winner?	lib/bare_gato/winning_strategies/row.rb	/^      def winner?$/;"	f	class:BareGato.WinningStrategies.Row

@@ -1,14 +1,13 @@
 class Move
-  attr_accessor :x, :y, :player
+  attr_reader :x, :y, :player
 
   def initialize player, space
-    self.player = player
-    self.x = space[:x]
-    self.y = space[:y]
+    @player = player
+    @x = space[:x]
+    @y = space[:y]
   end
 
   def valid?
     x > -1 && y > -1
   end
-
 end

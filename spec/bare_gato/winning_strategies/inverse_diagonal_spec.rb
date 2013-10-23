@@ -5,9 +5,9 @@ describe BareGato::WinningStrategies::InverseDiagonal do
   context "within a winner grid" do
     let(:grid) do
       [
-        ['o', '',  'x'],
-        ['',  'x', ''],
-        ['x', 'o', '']
+        [ 'o', nil,  'x' ],
+        [ nil,  'x', nil ],
+        [ 'x', 'o', nil ]
       ]
     end
 
@@ -23,9 +23,9 @@ describe BareGato::WinningStrategies::InverseDiagonal do
   context "within a loser grid" do
     let(:grid) do
       [
-        ['',  'x', 'x'],
-        ['o', 'x', 'o'],
-        ['',  '',  '']
+        [ nil,  'x', 'x' ],
+        [ 'o', 'x', 'o' ],
+        [ nil,  nil,  nil ]
       ]
     end
 
