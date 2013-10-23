@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bare_gato (0.0.1)
+    bare_gato (0.0.2)
 
 GEM
   remote: https://rubygems.org/

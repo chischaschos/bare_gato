@@ -11,8 +11,8 @@ module BareGato
       @players = args[:players]
     end
 
-    def add_player player
-      @players << player
+    def includes_player? player
+      @players.include? player
     end
 
     def got_a_winner?
